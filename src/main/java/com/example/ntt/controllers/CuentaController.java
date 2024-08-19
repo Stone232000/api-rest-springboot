@@ -57,11 +57,11 @@ public class CuentaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCuenta(@PathVariable Long id) {
+    public ResponseEntity<String> deleteCuenta(@PathVariable Long id) {
         Cuenta cuenta = cuentaRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cuenta no encontrada"));
 
         cuentaRepository.delete(cuenta);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Cuenta Eliminada Correctamente");
     }
 }
